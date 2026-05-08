@@ -1,0 +1,24 @@
+from pages.landing_page import LandingPage
+
+
+def test_landing_page_opens(browser):
+    page = LandingPage(browser)
+    page.open_page()
+
+    assert page.has_main_content()
+
+
+def test_open_catalog_from_landing(browser):
+    page = LandingPage(browser)
+    page.open_page()
+    page.click_catalog_button()
+
+    assert page.is_catalog_opened()
+
+
+def test_empty_search_redirects_to_catalog(browser):
+    page = LandingPage(browser)
+    page.open_page()
+    page.click_empty_search()
+
+    assert page.is_catalog_opened()
